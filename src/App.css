@@ -9,5 +9,17 @@
 }
 
 .app-container {
-  
+  display: flex;
+  min-height: 100vh;
+  background-color: rgb(0, 195, 255);
+  align-items: center;
+  justify-content: center;
+}
+
+.app {
+  padding: 20px;
+  min-width: 300px;
+  background-color: rgb(185, 183, 183);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
