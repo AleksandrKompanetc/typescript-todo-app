@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { Header } from './components/Header/Header';
 
 const DEFAULT_TODO_LIST = [
   { id: 1, name: 'task 1', description: 'description 1', checked: false}, 
@@ -9,10 +10,12 @@ const DEFAULT_TODO_LIST = [
 
 export const App = () => {
   const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
-  
+
   return (
     <div className="app-container">
-      <div className='app'>todo</div>
+      <div className='app'>
+        <Header todoCount={todos.length} />
+      </div>
     </div>
   );
 }
