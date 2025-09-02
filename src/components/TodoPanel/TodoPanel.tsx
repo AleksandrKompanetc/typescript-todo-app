@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import styles from './TodoPanel.module.css';
 
+const DEFAULT_TODO = {
+  name: '',
+  description: ''
+}
+
 export const TodoPanel = () => {
   const [todo, setTodo] = useState({ name: '', description: '' });
 
