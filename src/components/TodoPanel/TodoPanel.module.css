@@ -2,4 +2,13 @@
   background-color: white;
   box-shadow: 0px 8px 11px -8px rgba(34, 60, 80, 0.09);
   margin-bottom: 15px;
+  width: 100%;
+  padding: 25px 20px;
+  border-radius: 5px;
+}
+
+.fields_container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
