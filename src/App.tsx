@@ -16,7 +16,7 @@ export const App = () => {
     <div className="app-container">
       <div className='app'>
         <Header todoCount={todos.length} />
-        <TodoPanel />
+        <TodoPanel onAddTodo={() => { /* TODO: implement add todo logic */ }} />
       </div>
     </div>
   );
