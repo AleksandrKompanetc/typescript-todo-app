@@ -45,7 +45,7 @@ export const TodoPanel: React.FC<TodoPanelProps> = () => {
             />
           </label>
         </div>
-        <div>
+        <div className={styles.button_container}>
           <button>ADD</button>
         </div>
       </div>
