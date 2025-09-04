@@ -1,0 +1,10 @@
+.button {
+  padding: 8px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.button_red {
+  border: 1px solid rgba(210, 25, 25, .5);
+}

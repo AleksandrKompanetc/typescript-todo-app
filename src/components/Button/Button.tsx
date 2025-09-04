@@ -6,8 +6,8 @@ interface ButtonProps extends React.ComponentPropsWithRef<'button'> {
   color: 'orange' | 'blue' | 'red';
 }
 
-export const Button = () => {
+export const Button: React.FC<ButtonProps> = ({children, color, onClick}) => {
   return (
-
+    <button></button>
   )
 }
