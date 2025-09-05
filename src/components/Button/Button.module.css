@@ -7,4 +7,27 @@
 
 .button_red {
   border: 1px solid rgba(210, 25, 25, .5);
+  color: #d21919;
+}
+
+.button_red:hover {
+  border: 1px solid rgba(210, 25, 25, .5);
+}
+
+.button_orange {
+  border: 1px solid rgba(210, 102, 25, .5);
+  color: #d27c19;
+}
+
+.button_orange:hover {
+  border: 1px solid rgba(210, 25, 25, .5);
+}
+
+.button_blue {
+  border: 1px solid rgba(25, 118, 210, .5);
+  color: #1976d2;
+}
+
+.button_blue:hover {
+  border: 1px solid rgba(210, 25, 25, .5);
 }
