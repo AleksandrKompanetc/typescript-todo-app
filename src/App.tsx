@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import './App.css';
 import { Header } from './components/Header/Header';
 import { TodoPanel } from './components/TodoPanel/TodoPanel';
+
+type Todo = {
+  id: number;
+  name: string;
+  description: string;
+  checked: boolean;
+};
  
 const DEFAULT_TODO_LIST = [
   { id: 1, name: 'task 1', description: 'description 1', checked: false}, 
@@ -11,6 +18,10 @@ const DEFAULT_TODO_LIST = [
 
 export const App = () => {
   const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
+
+  const addTodo = ({name, description}: Omit<Todo, ''>) => {
+
+  }
 
   return (
     <div className="app-container">

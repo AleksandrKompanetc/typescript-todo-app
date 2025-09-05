@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from './TodoPanel.module.css';
+import { Button } from '../Button/Button';
 
 interface TodoPanelProps {
   onAddTodo: () => void;
@@ -46,7 +47,7 @@ export const TodoPanel: React.FC<TodoPanelProps> = () => {
           </label>
         </div>
         <div className={styles.button_container}>
-          <button>ADD</button>
+          <Button color='blue'>ADD</Button>
         </div>
       </div>
     </div>
