@@ -19,8 +19,8 @@ const DEFAULT_TODO_LIST = [
 export const App = () => {
   const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
 
-  const addTodo = ({name, description}: Omit<Todo, ''>) => {
-
+  const addTodo = ({name, description}: Omit<Todo, 'checked' | 'id'>) => {
+    setTodos([...todos, ])
   }
 
   return (
