@@ -11,7 +11,7 @@ const DEFAULT_TODO = {
   description: ''
 }
 
-export const TodoPanel: React.FC<TodoPanelProps> = () => {
+export const TodoPanel: React.FC<TodoPanelProps> = ({addTodo}) => {
   const [todo, setTodo] = useState({ name: '', description: '' });
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,7 +47,7 @@ export const TodoPanel: React.FC<TodoPanelProps> = () => {
           </label>
         </div>
         <div className={styles.button_container}>
-          <Button color='blue'>ADD</Button>
+          <Button color='blue' onClick = {() => addTodo({name: todo.name, description: todo.description})}>ADD</Button>
         </div>
       </div>
     </div>
