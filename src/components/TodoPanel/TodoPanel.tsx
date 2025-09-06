@@ -3,7 +3,7 @@ import styles from './TodoPanel.module.css';
 import { Button } from '../Button/Button';
 
 interface TodoPanelProps {
-  onAddTodo: () => void;
+  onTodo: ({name, description}: Omit<Todo, 'checked' | 'id'>) => void;
 }
 
 const DEFAULT_TODO = {
