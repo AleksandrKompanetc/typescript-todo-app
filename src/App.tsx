@@ -20,14 +20,14 @@ export const App = () => {
   const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
 
   const addTodo = ({name, description}: Omit<Todo, 'checked' | 'id'>) => {
-    setTodos([...todos, ])
+    setTodos([...todos, {id: todos[todos.length - 1].id + 1, description, name, checked: false}])
   }
 
   return (
     <div className="app-container">
       <div className='app'>
         <Header todoCount={todos.length} />
-        <TodoPanel onAddTodo={() => { /* TODO: implement add todo logic */ }} />
+        <TodoPanel addTodo={addTodo} />
       </div>
     </div>
   );
