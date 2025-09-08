@@ -19,6 +19,11 @@ export const TodoPanel: React.FC<TodoPanelProps> = ({addTodo}) => {
     setTodo({ ...todo, [name]: value });
   }
 
+  const onClick = () => {
+    addTodo({name: todo.name, description: todo.description});
+    setTodo(DEFAULT_TODO);
+  }
+
   return (
     <div className={styles.todo_panel_container}>
       <div className={styles.fields_container}>
