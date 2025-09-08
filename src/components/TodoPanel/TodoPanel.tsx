@@ -52,7 +52,7 @@ export const TodoPanel: React.FC<TodoPanelProps> = ({addTodo}) => {
           </label>
         </div>
         <div className={styles.button_container}>
-          <Button color='blue' onClick = {() => addTodo({name: todo.name, description: todo.description})}>ADD</Button>
+          <Button color='blue' onClick={onClick}>ADD</Button>
         </div>
       </div>
     </div>
