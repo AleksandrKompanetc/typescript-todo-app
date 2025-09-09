@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import { Header } from './components/Header/Header';
 import { TodoPanel } from './components/TodoPanel/TodoPanel';
+import { TodoList } from './components/TodoList/TodoList';
 
 type Todo = {
   id: number;
@@ -28,6 +29,7 @@ export const App = () => {
       <div className='app'>
         <Header todoCount={todos.length} />
         <TodoPanel addTodo={addTodo} />
+        <TodoList todos={todos} />
       </div>
     </div>
   );
