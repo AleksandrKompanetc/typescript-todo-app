@@ -11,7 +11,13 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
   return (
     <div className={styles.todo_item_container}>
       <div>
-        <div aria-hidden className={styles.todo_item_title}>
+        <div 
+          aria-hidden 
+          style={{
+            opacity: todo.checked ? 0.5 : 1,
+            textDecoration: todo.checked ? 'line-through' : 'none'
+          }}
+          className={styles.todo_item_title}>
           {todo.name}
         </div>
         <div aria-hidden className={styles.todo_item_description}>
