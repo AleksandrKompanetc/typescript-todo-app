@@ -19,6 +19,7 @@ const DEFAULT_TODO_LIST = [
 
 export const App = () => {
   const [todos, setTodos] = useState(DEFAULT_TODO_LIST);
+  const [todoIdForEdit, setTodoIdForEdit] = useState<Todo['id']|null>(null);
 
   const addTodo = ({name, description}: Omit<Todo, 'checked' | 'id'>) => {
     setTodos([...todos, {id: todos[todos.length - 1].id + 1, description, name, checked: false}])
