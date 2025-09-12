@@ -33,6 +33,10 @@ export const App = () => {
     }))
   }
 
+  const deleteTodo = (id: Todo['id']) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  }
+
   return (
     <div className="app-container">
       <div className='app'>
