@@ -4,9 +4,10 @@ import { Button } from '../../Button/Button';
 
 interface TodoItemProps {
   todo: Todo;
+  checkTodo: (id: Todo['id']) => void;
 }
 
-export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
+export const TodoItem: React.FC<TodoItemProps> = ({ todo, checkTodo }) => {
   console.log('@', todo)
   return (
     <div className={styles.todo_item_container}>
@@ -17,6 +18,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo }) => {
             opacity: todo.checked ? 0.5 : 1,
             textDecoration: todo.checked ? 'line-through' : 'none'
           }}
+          onClick={() => checkTodo(todo.id)}
           className={styles.todo_item_title}>
           {todo.name}
         </div>
