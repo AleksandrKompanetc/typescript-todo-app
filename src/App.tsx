@@ -42,7 +42,7 @@ export const App = () => {
       <div className='app'>
         <Header todoCount={todos.length} />
         <TodoPanel addTodo={addTodo} />
-        <TodoList todos={todos} checkTodo={checkTodo} />
+        <TodoList todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo} />
       </div>
     </div>
   );
