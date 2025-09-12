@@ -24,6 +24,15 @@ export const App = () => {
     setTodos([...todos, {id: todos[todos.length - 1].id + 1, description, name, checked: false}])
   }
 
+  const checkTodo = (id: Todo['id']) => {
+    setTodos(todos.map((todo) => {
+      if (todo.id === id) {
+        return {...todo, checked: !todo.checked }
+      }
+      return todo;
+    }))
+  }
+
   return (
     <div className="app-container">
       <div className='app'>
