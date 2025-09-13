@@ -5,13 +5,20 @@ interface TodoListProps {
   todos: Todo[];
   checkTodo: (id: Todo['id']) => void;
   deleteTodo: (id: Todo['id']) => void;
+  selectTodoIdForEdit: (id: Todo['id']|null) => void;
 }
 
 export const TodoList: React.FC<TodoListProps> = ({todos, checkTodo, deleteTodo}) => {
   return (
     <div>
       {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} checkTodo={checkTodo} deleteTodo={deleteTodo} />
+        <TodoItem 
+          key={todo.id} 
+          todo={todo} 
+          checkTodo={checkTodo} 
+          deleteTodo={deleteTodo} 
+          selectTodoIdForEdit={selectTodoIdForEdit} 
+        />
       ))}
     </div>
   )
