@@ -49,6 +49,7 @@ export const App = () => {
         <TodoPanel addTodo={addTodo} />
         <TodoList 
           todos={todos} 
+          todoIdForEdit={todoIdForEdit}
           checkTodo={checkTodo} 
           deleteTodo={deleteTodo} 
           selectTodoIdForEdit={selectTodoIdForEdit} 

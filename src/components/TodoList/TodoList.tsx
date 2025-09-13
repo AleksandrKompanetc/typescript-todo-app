@@ -3,6 +3,7 @@ import { TodoItem } from './TodoItem/TodoItem';
 
 interface TodoListProps {
   todos: Todo[];
+  todoIdForEdit: Todo['id'];
   checkTodo: (id: Todo['id']) => void;
   deleteTodo: (id: Todo['id']) => void;
   selectTodoIdForEdit: (id: Todo['id']|null) => void;
