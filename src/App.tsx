@@ -47,7 +47,12 @@ export const App = () => {
       <div className='app'>
         <Header todoCount={todos.length} />
         <TodoPanel addTodo={addTodo} />
-        <TodoList todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo} />
+        <TodoList 
+          todos={todos} 
+          checkTodo={checkTodo} 
+          deleteTodo={deleteTodo} 
+          selectTodoIdForEdit={selectTodoIdForEdit} 
+        />
       </div>
     </div>
   );
