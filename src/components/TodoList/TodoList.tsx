@@ -12,7 +12,9 @@ interface TodoListProps {
 export const TodoList: React.FC<TodoListProps> = ({todos, checkTodo, deleteTodo}) => {
   return (
     <div>
-      {todos.map((todo) => (
+      {todos.map((todo) => {
+        if (todo.id === )
+      }(
         <TodoItem 
           key={todo.id} 
           todo={todo} 
