@@ -1,18 +1,15 @@
-import React from 'react';
-// import { useState } from 'react';
+import React, {useState} from 'react';
 import { TodoList } from './TodoList';
 import './App.css';
 import { TaskType } from './TodoList';
 
 export default function App() {
-  // const [tasks, setTasks] = useState()
-
-  let tasks: Array<TaskType> = [
+  const [tasks, setTasks] = useState([
     { id: 1, title: 'CSS', isDone: true},
     { id: 2, title: 'JS', isDone: true},
     { id: 3, title: 'React', isDone: false},
     { id: 4, title: 'Redux', isDone: true}
-  ]
+  ]);
 
   // let tasks2: Array<TaskType> = [
   //   { id: 1, title: 'VueJS', isDone: false},
@@ -21,7 +18,8 @@ export default function App() {
   // ]
 
   function removeTask(id: number) {
-    tasks = tasks.filter(t => t.id !== id)
+    let FilteredTasks = tasks.filter(t => t.id !== id);
+    setTasks(FilteredTasks);
   }
 
   return (
