@@ -33,8 +33,8 @@ export default function App() {
     setFilter(value);
   }
 
-  function addTask() {
-    let newTask = {id: v1(), title: 'New task', isDone: false};
+  function addTask(title: string) {
+    let newTask = {id: v1(), title: {title}, isDone: false};
     let newTasks = [newTask, ...tasks];
     setTasks(newTasks);
   }
