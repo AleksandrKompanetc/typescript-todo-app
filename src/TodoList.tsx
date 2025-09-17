@@ -1,12 +1,13 @@
 import React from 'react';
 
-function sum(a: number, b: number) {
-  return a + b;
-}
+// function sum(a: number, b: number) {
+//   return a + b;
+// }
 
 type PropsType = {
   title: string;
   tasks?: Array<TaskType>;
+  removeTask: (id: number) => void;
 }
 
 export type TaskType = {
@@ -28,6 +29,9 @@ export function TodoList(props: PropsType) {
           props.tasks ? props.tasks.map(task => <li key={task.id}>
             <input type="checkbox" checked={task.isDone} />
             <span>{task.title}</span>
+            <button onClick={() => {
+              props.removeTask(task.id)
+            }}>x</button>
           </li>) : null
         }
       </ul>
