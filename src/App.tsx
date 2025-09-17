@@ -33,6 +33,12 @@ export default function App() {
     setFilter(value);
   }
 
+  function addTask() {
+    let newTask = {id: v1(), title: 'New task', isDone: false};
+    let newTasks = [newTask, ...tasks];
+    setTasks(newTasks);
+  }
+
   function removeTask(id: string) {
     let FilteredTasks = tasks.filter(t => t.id !== id);
     setTasks(FilteredTasks);
@@ -44,6 +50,7 @@ export default function App() {
         title="What to learn" 
         tasks={tasksForTodoList} 
         changeFilter={changeFilter}
+        addTask={addTask}
         removeTask={removeTask} 
       />
       {/* <TodoList title="Movies" tasks={tasks2} />
