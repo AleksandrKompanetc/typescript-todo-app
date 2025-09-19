@@ -49,7 +49,7 @@ export default function App() {
     if (task) {
       task.isDone = isDone;
     }
-    setTasks(tasks);
+    setTasks([...tasks]);
   }
 
   return (
@@ -60,6 +60,7 @@ export default function App() {
         changeFilter={changeFilter}
         addTask={addTask}
         removeTask={removeTask} 
+        changeTaskStatus={changeStatus}
       />
       {/* <TodoList title="Movies" tasks={tasks2} />
       <TodoList title="Songs" /> */}
