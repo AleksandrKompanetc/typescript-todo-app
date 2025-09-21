@@ -61,6 +61,7 @@ export default function App() {
         addTask={addTask}
         removeTask={removeTask} 
         changeTaskStatus={changeStatus}
+        filter={filter}
       />
       {/* <TodoList title="Movies" tasks={tasks2} />
       <TodoList title="Songs" /> */}
