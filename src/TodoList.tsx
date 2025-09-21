@@ -21,23 +21,27 @@ export type TaskType = {
 }
 
 export function TodoList(props: PropsType) {
-  const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [title, setTitle] = useState('');
+  const [error, setError] = useState<string | null>(null);
 
   const onNewTitleChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTaskTitle(e.currentTarget.value)
+    setTitle(e.currentTarget.value)
   }
 
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    setError(null);
     if (e.key === 'Enter') {
-      props.addTask(newTaskTitle);
-      setNewTaskTitle('');
+      props.addTask(title);
+      setTitle('');
     }
   }
 
   const addTask = () => {
-    if (newTaskTitle.trim() !== '') {
-      props.addTask(newTaskTitle);
-      setNewTaskTitle('');
+    if (title.trim() !== '') {
+      props.addTask(title);
+      setTitle('');
+    } else {
+      setError('Title is required');
     }
   }
 
@@ -51,11 +55,13 @@ export function TodoList(props: PropsType) {
       <div>
         <input
           type="text"
-          value={newTaskTitle}
+          value={title}
           onChange={onNewTitleChangeHandler}
           onKeyPress={onKeyPressHandler}
+          className={error ? 'error' : ''}
         />
         <button onClick={addTask}>+</button>
+        {error && <div className='error-message'>{error}</div>}
       </div>
       <ul>
         {
