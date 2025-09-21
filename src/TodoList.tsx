@@ -75,7 +75,7 @@ export function TodoList(props: PropsType) {
               props.changeTaskStatus(task.id, e.currentTarget.checked);
             }
 
-            return <li key={task.id}>
+            return <li key={task.id} className={task.isDone ? 'is-done' : ''}>
               <input
                 type="checkbox"
                 checked={task.isDone}
