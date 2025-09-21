@@ -35,8 +35,10 @@ export function TodoList(props: PropsType) {
   }
 
   const addTask = () => {
-    props.addTask(newTaskTitle);
-    setNewTaskTitle('');
+    if (newTaskTitle.trim() !== '') {
+      props.addTask(newTaskTitle);
+      setNewTaskTitle('');
+    }
   }
 
   const onAllClickHandler = () => props.changeFilter('all');
@@ -62,14 +64,14 @@ export function TodoList(props: PropsType) {
             const onRemoveHandler = () => {
               props.removeTask(task.id)
             }
-             const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
               props.changeTaskStatus(task.id, e.currentTarget.checked);
-             }
+            }
 
             return <li key={task.id}>
-              <input 
-                type="checkbox" 
-                checked={task.isDone} 
+              <input
+                type="checkbox"
+                checked={task.isDone}
                 onChange={onChangeHandler}
               />
               <span>{task.title}</span>
