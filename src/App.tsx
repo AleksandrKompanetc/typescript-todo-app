@@ -60,7 +60,14 @@ export default function App() {
     { id: todolistId2, title: 'What to buy', filter: 'completed' }
   ])
 
-  let [tasksObj, setTasksObj] = useState<{ [key: string]: Array<TaskType> }>({
+  let removeTodolist = (todolistId: string) => {
+    let filteredTodolist = todolists.filter(tl => tl.id !== todolistId);
+    setTodolists(filteredTodolist);
+    delete tasksObj[todolistId];
+    setTasksObj({ ...tasksObj });
+  }
+
+  let [tasksObj, setTasksObj] = useState({
     [todolistId1]: [
       { id: v1(), title: 'HTML&CSS', isDone: true },
       { id: v1(), title: 'JS', isDone: true },
@@ -79,7 +86,7 @@ export default function App() {
       {
         todolists.map((tl) => {
 
-          let tasksForTodolists = tasks[tl.id];
+          let tasksForTodolists = tasksObj[tl.id];
 
           if (tl.filter === 'active') {
             tasksForTodolists = tasksForTodolists.filter(t => t.isDone === false);
@@ -98,6 +105,7 @@ export default function App() {
             removeTask={removeTask}
             changeTaskStatus={changeStatus}
             filter={tl.filter}
+            removeTodolist={removeTodolist}
           />
         })
       }
