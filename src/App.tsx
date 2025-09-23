@@ -28,10 +28,12 @@ export default function App() {
     }
   }
 
-  function addTask(title: string) {
+  function addTask(title: string, todolistId: string) {
     let newTask = { id: v1(), title: title, isDone: false };
+    let tasks = tasksObj[todolistId];
     let newTasks = [newTask, ...tasks];
-    setTasks(newTasks);
+    tasksObj[todolistId] = newTasks;
+    setTasksObj({...tasksObj});
   }
 
   function removeTask(id: string, todolistId: string) {
@@ -41,12 +43,13 @@ export default function App() {
     setTasksObj({...tasksObj});
   }
 
-  function changeStatus(taskId: string, isDone: boolean) {
+  function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
+    let tasks = tasksObj[todolistId];
     let task = tasks.find(t => t.id === taskId);
     if (task) {
       task.isDone = isDone;
+      setTasksObj({...tasksObj});
     }
-    setTasks([...tasks]);
   }
 
   let todolistId1 = v1();
@@ -57,17 +60,17 @@ export default function App() {
     { id: todolistId2, title: 'What to buy', filter: 'completed' }
   ])
 
-  let [tasksObj, setTasksObj] = useState({
+  let [tasksObj, setTasksObj] = useState<{ [key: string]: Array<TaskType> }>({
     [todolistId1]: [
-      { id: v1(), title: 'HTML&CSS', filter: 'true' },
-      { id: v1(), title: 'JS', filter: 'true' },
-      { id: v1(), title: 'ReactJS', filter: 'false' },
-      { id: v1(), title: 'Rest API', filter: 'false' },
-      { id: v1(), title: 'GraphQL', filter: 'false' }
+      { id: v1(), title: 'HTML&CSS', isDone: true },
+      { id: v1(), title: 'JS', isDone: true },
+      { id: v1(), title: 'ReactJS', isDone: false },
+      { id: v1(), title: 'Rest API', isDone: false },
+      { id: v1(), title: 'GraphQL', isDone: false }
     ],
     [todolistId2]: [
-      { id: v1(), title: 'Book', filter: 'false' },
-      { id: v1(), title: 'Milk', filter: 'true' },
+      { id: v1(), title: 'Book', isDone: false },
+      { id: v1(), title: 'Milk', isDone: true },
     ]
   })
 
