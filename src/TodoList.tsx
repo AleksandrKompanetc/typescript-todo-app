@@ -98,3 +98,14 @@ export function TodoList(props: PropsType) {
     </div >
   )
 }
+
+function AddItemForm(props: AddItemFormPropsType) {
+  return <div>
+    <input 
+      type="text" 
+
+    />
+    <button onClick={addTask}>+</button>
+    {error && <div className='error-message'>{error}</div>}
+  </div>
+}
