@@ -13,6 +13,10 @@ type TodolistType = {
   filter: FilterValuesType;
 }
 
+type TasksStateType = {
+  [key: string]: Array<TaskType>
+}
+
 export default function App() {
   // const [tasks, setTasks] = useState<Array<TaskType>>([
   //   { id: v1(), title: 'CSS', isDone: true },
