@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-type AddItemFormPropsType = {
-  id: string;
-  addTask: (title: string, todolistId: string) => void;
+type AddItemFormPropsType = {addItem: (title: string) => void;
 }
 
 export function AddItemForm(props: AddItemFormPropsType) {
@@ -22,7 +20,7 @@ export function AddItemForm(props: AddItemFormPropsType) {
 
   const addTask = () => {
     if (title.trim() !== '') {
-      props.addTask(title.trim(), props.id);
+      props.addItem(title.trim());
       setTitle('');
     } else {
       setError('Title is required');

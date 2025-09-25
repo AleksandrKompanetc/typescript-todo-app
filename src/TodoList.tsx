@@ -30,12 +30,15 @@ export function TodoList(props: PropsType) {
   const onCompletedClickHandler = () => props.changeFilter('completed', props.id);
   const removeTodolist = () => props.removeTodolist(props.id);
 
+  const addTask = (title: string) => {
+    props.addTask(title, props.id);
+  }
+
   return (
     <div>
       <h3>{props.title} <button onClick={removeTodolist}>x</button></h3>
-      <AddItemForm 
-        id={props.id} 
-        addTask={props.addTask} 
+      <AddItemForm
+        addItem={addTask} 
       />
       <ul>
         {
