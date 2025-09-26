@@ -72,7 +72,7 @@ export default function App() {
     setTasksObj({ ...tasksObj });
   }
 
-  let [tasksObj, setTasksObj] = useState({
+  let [tasksObj, setTasksObj] = useState<TasksStateType>({
     [todolistId1]: [
       { id: v1(), title: 'HTML&CSS', isDone: true },
       { id: v1(), title: 'JS', isDone: true },
