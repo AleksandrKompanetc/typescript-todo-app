@@ -45,21 +45,28 @@ export function TodoList(props: PropsType) {
         {
           props.tasks ? props.tasks.map(task => {
 
-            const onRemoveHandler = () => {
+            const onClickHandler = () => {
               props.removeTask(task.id, props.id)
             }
-            const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+            const onChangeStatusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
               props.changeTaskStatus(task.id, e.currentTarget.checked, props.id);
+            }
+            const onChangeTitleHandler = (newValue: string) => {
+
             }
 
             return <li key={task.id} className={task.isDone ? 'is-done' : ''}>
               <input
                 type="checkbox"
                 checked={task.isDone}
-                onChange={onChangeHandler}
+                onChange={onChangeStatusHandler}
               />
-              <EditableSpan title={task.title} editMode={true} />
-              <button onClick={onRemoveHandler}>x</button>
+              <EditableSpan 
+                title={task.title} 
+                onChange={onChangeTitleHandler}
+                editMode={true} 
+              />
+              <button onClick={onClickHandler}>x</button>
             </li>
           }) : null
         }
