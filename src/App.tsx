@@ -57,6 +57,15 @@ export default function App() {
     }
   }
 
+  function changeTaskTitle(taskId: string, newValue: string, todolistId: string) {
+    let tasks = tasksObj[todolistId];
+    let task = tasks.find(t => t.id === taskId);
+    if (task) {
+      task.title = newValue;
+      setTasksObj({...tasksObj});
+    }
+  }
+
   let todolistId1 = v1();
   let todolistId2 = v1();
 
@@ -123,6 +132,7 @@ export default function App() {
             addTask={addTask}
             removeTask={removeTask}
             changeTaskStatus={changeStatus}
+            changeTaskTitle={changeTaskTitle}
             filter={tl.filter}
             removeTodolist={removeTodolist}
           />
