@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FilterValuesType } from './App';
 import { AddItemForm } from './AddItemForm';
 import { EditableSpan } from './EditableSpan';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from '@mui/material';
 
 // function sum(a: number, b: number) {
 //   return a + b;
@@ -44,7 +47,9 @@ export function TodoList(props: PropsType) {
     <div>
       <h3>
         <EditableSpan title={props.title} onChange={changeTodolistTitle} editMode={true}/>
-        <button onClick={removeTodolist}>x</button>
+        <IconButton onClick={removeTodolist}>
+          <DeleteIcon />
+        </IconButton>
       </h3>
       <AddItemForm
         addItem={addTask} 
@@ -74,15 +79,17 @@ export function TodoList(props: PropsType) {
                 onChange={onChangeTitleHandler}
                 editMode={true} 
               />
-              <button onClick={onClickHandler}>x</button>
+              <IconButton onClick={onClickHandler}>
+                <DeleteIcon />
+              </IconButton>
             </li>
           }) : null
         }
       </ul>
       <div>
-        <button className={props.filter === 'all' ? 'active-filter' : ''} onClick={onAllClickHandler}>All</button>
-        <button className={props.filter === 'active' ? 'active-filter' : ''} onClick={onActiveClickHandler}>Active</button>
-        <button className={props.filter === 'completed' ? 'active-filter' : ''} onClick={onCompletedClickHandler}>Completed</button>
+        <Button variant={props.filter === 'all' ? 'contained' : 'text'} onClick={onAllClickHandler}>All</Button>
+        <Button color={'primary'} variant={props.filter === 'active' ? 'contained' : 'text'} onClick={onActiveClickHandler}>Active</Button>
+        <Button color={'secondary'} variant={props.filter === 'completed' ? 'contained' : 'text'} onClick={onCompletedClickHandler}>Completed</Button>
       </div>
     </div >
   )
