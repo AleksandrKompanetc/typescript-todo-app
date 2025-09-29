@@ -74,12 +74,26 @@ export default function App() {
     { id: todolistId2, title: 'What to buy', filter: 'all' }
   ])
 
-  let removeTodolist = (todolistId: string) => {
+  function removeTodolist(todolistId: string) {
     let filteredTodolist = todolists.filter(tl => tl.id !== todolistId);
     setTodolists(filteredTodolist);
     delete tasksObj[todolistId];
     setTasksObj({ ...tasksObj });
   }
+
+  function changeTodolistTitle(id: string, newTitle: string) {
+    let todolist = todolists.find(tl => tl.id === id);
+    if (todolist) {
+      todolist.title = newTitle;
+      setTodolists([...todolists]);
+    }
+    // const updatedTodolists = todolists.map(tl =>
+    //   tl.id === id ? { ...tl, title: newTitle } : tl
+    // );
+    // setTodolists(updatedTodolists);
+  }
+
+
 
   let [tasksObj, setTasksObj] = useState<TasksStateType>({
     [todolistId1]: [
@@ -135,6 +149,7 @@ export default function App() {
             changeTaskTitle={changeTaskTitle}
             filter={tl.filter}
             removeTodolist={removeTodolist}
+            changeTodolistTitle={changeTodolistTitle}
           />
         })
       }
