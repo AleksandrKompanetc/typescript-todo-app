@@ -5,6 +5,7 @@ import { EditableSpan } from './EditableSpan';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
+import CheckBox from '@mui/material/Checkbox';
 
 // function sum(a: number, b: number) {
 //   return a + b;
@@ -54,7 +55,7 @@ export function TodoList(props: PropsType) {
       <AddItemForm
         addItem={addTask} 
       />
-      <ul>
+      <div>
         {
           props.tasks ? props.tasks.map(task => {
 
@@ -68,9 +69,8 @@ export function TodoList(props: PropsType) {
               props.changeTaskTitle(task.id, newValue, props.id);
             }
 
-            return <li key={task.id} className={task.isDone ? 'is-done' : ''}>
-              <input
-                type="checkbox"
+            return <div key={task.id} className={task.isDone ? 'is-done' : ''}>
+              <CheckBox
                 checked={task.isDone}
                 onChange={onChangeStatusHandler}
               />
@@ -82,10 +82,10 @@ export function TodoList(props: PropsType) {
               <IconButton onClick={onClickHandler}>
                 <DeleteIcon />
               </IconButton>
-            </li>
+            </div>
           }) : null
         }
-      </ul>
+      </div>
       <div>
         <Button variant={props.filter === 'all' ? 'outlined' : 'text'} onClick={onAllClickHandler}>All</Button>
         <Button color={'primary'} variant={props.filter === 'active' ? 'contained' : 'text'} onClick={onActiveClickHandler}>Active</Button>
