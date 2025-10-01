@@ -89,7 +89,7 @@ export default function App() {
   }
 
   function changeTodolistTitle(id: string, newTitle: string) {
-    let todolist = todolists.find(tl => tl.id === id);
+    const todolist = todolists.find(tl => tl.id === id);
     if (todolist) {
       todolist.title = newTitle;
       setTodolists([...todolists]);
@@ -162,6 +162,7 @@ export default function App() {
               return <Grid>
                 <Paper style={{ padding: '10px' }}>
                   <TodoList
+                    key={tl.id}
                     id={tl.id}
                     title={tl.title}
                     tasks={tasksForTodolists}
