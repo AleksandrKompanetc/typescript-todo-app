@@ -1,8 +1,9 @@
-import { todolistsReducer } from "./todolists-reducer";
+import { RemoveTodolistAC, AddTodolistAC, todolistsReducer } from "./todolists-reducer";
 import { v1 } from "uuid";
 import { TodolistType } from "../App";
 import { FilterValuesType } from "../App";
 import { ChangeTodolistFilterActionType } from "./todolists-reducer";
+import { Remove } from "@mui/icons-material";
 
 test('correct todolist should be removed', () => {
   let todolistId1 = v1();
@@ -13,7 +14,7 @@ test('correct todolist should be removed', () => {
     { id: todolistId2, title: 'What to buy', filter: 'all' }
   ]
 
-  const endState = todolistsReducer(startState, {type: 'REMOVE-TODOLIST', id: todolistId1})
+  const endState = todolistsReducer(startState, RemoveTodolistAC(todolistId1))
 
   expect(endState.length).toBe(1);
   expect(endState[0].id).toBe(todolistId2);
@@ -30,7 +31,7 @@ test('correct todolist should be added', () => {
     { id: todolistId2, title: 'What to buy', filter: 'all' }
   ]
 
-  const endState = todolistsReducer(startState, {type: 'ADD-TODOLIST', title: newTodolistTitle, id: v1()})
+  const endState = todolistsReducer(startState, AddTodolistAC(newTodolistTitle));
 
   expect(endState.length).toBe(3);
   expect(endState[2].title).toBe(newTodolistTitle);
