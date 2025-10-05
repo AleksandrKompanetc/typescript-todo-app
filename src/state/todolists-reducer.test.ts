@@ -1,9 +1,9 @@
-import { RemoveTodolistAC, AddTodolistAC, todolistsReducer } from "./todolists-reducer";
+import { RemoveTodolistAC, AddTodolistAC, ChangeTodolistTitleAC, ChangeTodolistFilterAC, todolistsReducer } from "./todolists-reducer";
 import { v1 } from "uuid";
 import { TodolistType } from "../App";
 import { FilterValuesType } from "../App";
 import { ChangeTodolistFilterActionType } from "./todolists-reducer";
-import { Remove } from "@mui/icons-material";
+import { ChangeCircleSharp, Remove } from "@mui/icons-material";
 
 test('correct todolist should be removed', () => {
   let todolistId1 = v1();
@@ -49,11 +49,7 @@ test('correct todolist should change its name', () => {
     { id: todolistId2, title: 'What to buy', filter: 'all' }
   ]
 
-  const action = {
-    type: 'CHANGE-TODOLIST-TITLE' as const,
-    id: todolistId2,
-    title: newTodolistTitle
-  }
+  const action = ChangeTodolistTitleAC(todolistId2, newTodolistTitle);
 
   const endState = todolistsReducer(startState, action);
 
@@ -72,11 +68,7 @@ test('correct filter of todolist should be changed', () => {
     { id: todolistId2, title: 'What to buy', filter: 'all' }
   ]
 
-  const action = {
-    type: 'CHANGE-TODOLIST-FILTER' as const,
-    id: todolistId2,
-    filter: newFilter
-  }
+  const action = ChangeTodolistFilterAC(todolistId2, newFilter);
 
   const endState = todolistsReducer(startState, action);
 
