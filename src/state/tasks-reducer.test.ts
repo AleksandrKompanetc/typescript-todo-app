@@ -10,10 +10,10 @@ test('correct task should be deleted from correct array', () => {
       { id: '2', title: 'JS', isDone: true },
       { id: '3', title: 'React', isDone: false } 
     ],
-    todolistId2: [
-      { id: '1', title: 'bread', isDone: },
-      { id: '2', title: 'milk', isDone: },
-      { id: '3', title: 'tea', isDone: }
+    'todolistId2': [
+      { id: '1', title: 'bread', isDone: false},
+      { id: '2', title: 'milk', isDone: false },
+      { id: '3', title: 'tea', isDone: false }
     ]
   }
 
@@ -107,7 +107,7 @@ test('new array should be added when new todolist is added', () => {
     ]
   }
 
-  const action = addTodolistAC('title no matter');
+  const action = addTodolistAC('title no matter', 'todolistId3');
   const endState = tasksReducer(startState, action);
 
   const keys = Object.keys(endState);
