@@ -28,7 +28,7 @@ export type TasksStateType = {
   [key: string]: Array<TaskType>
 }
 
-export default function AppWithReducers() {
+export default function AppWithRedux() {
   // const [tasks, setTasks] = useState<Array<TaskType>>([
   //   { id: v1(), title: 'CSS', isDone: true },
   //   { id: v1(), title: 'JS', isDone: true },

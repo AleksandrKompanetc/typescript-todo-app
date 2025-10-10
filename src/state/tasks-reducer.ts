@@ -76,7 +76,7 @@ export const tasksReducer = (state: TasksStateType, action: ActionsType): TasksS
       return stateCopy;
     }
     default: 
-      throw new Error('I don\'t understand this action type');
+      return state;
   }
 }
 
