@@ -170,7 +170,7 @@ export default function AppWithRedux() {
           {
             todolists.map((tl) => {
 
-              let tasksForTodolists = tasksObj[tl.id];
+              let tasksForTodolists = tasks[tl.id];
 
               if (tl.filter === 'active') {
                 tasksForTodolists = tasksForTodolists.filter(t => t.isDone === false);
