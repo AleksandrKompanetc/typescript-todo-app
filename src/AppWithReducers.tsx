@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { TodoList } from './TodoList';
 import './App.css';
 import { TaskType } from './TodoList';
@@ -11,6 +11,8 @@ import Menu from '@mui/icons-material/Menu';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import { todolistsReducer } from './state/todolists-reducer';
+import { tasksReducer } from './state/tasks-reducer';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
@@ -76,7 +78,7 @@ export default function App() {
   let todolistId1 = v1();
   let todolistId2 = v1();
 
-  let [todolists, setTodolists] = useState<Array<TodolistType>>([
+  let [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducer, [
     { id: todolistId1, title: 'What to learn', filter: 'all' },
     { id: todolistId2, title: 'What to buy', filter: 'all' }
   ])
@@ -102,7 +104,7 @@ export default function App() {
 
 
 
-  let [tasksObj, setTasksObj] = useState<TasksStateType>({
+  let [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducer, {
     [todolistId1]: [
       { id: v1(), title: 'HTML&CSS', isDone: true },
       { id: v1(), title: 'JS', isDone: true },
