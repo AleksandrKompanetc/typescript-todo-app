@@ -166,7 +166,7 @@ export default function AppWithReducers() {
         </Grid>
         <Grid container spacing={3}>
           {
-            todolists.map((tl) => {
+            (todolists ?? []).map((tl) => {
 
               let tasksForTodolists = tasksObj[tl.id];
 
@@ -177,10 +177,9 @@ export default function AppWithReducers() {
                 tasksForTodolists = tasksForTodolists.filter(t => t.isDone === true);
               }
 
-              return <Grid>
+              return <Grid key={tl.id}>
                 <Paper style={{ padding: '10px' }}>
                   <TodoList
-                    key={tl.id}
                     id={tl.id}
                     title={tl.title}
                     tasks={tasksForTodolists}

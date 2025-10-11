@@ -168,7 +168,7 @@ export default function AppWithRedux() {
         </Grid>
         <Grid container spacing={3}>
           {
-            todolists.map((tl) => {
+            todolists && todolists.map((tl) => {
 
               let tasksForTodolists = tasks[tl.id];
 
