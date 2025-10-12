@@ -6,6 +6,10 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button } from '@mui/material';
 import CheckBox from '@mui/material/Checkbox';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppRootState } from './state/store';
+import { TasksStateType } from './AppWithReducers';
+import { addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC } from './state/tasks-reducer';
 
 // function sum(a: number, b: number) {
 //   return a + b;
@@ -14,12 +18,12 @@ import CheckBox from '@mui/material/Checkbox';
 type PropsType = {
   id: string;
   title: string;
-  tasks?: Array<TaskType>;
-  addTask: (title: string, todolistId: string) => void;
-  removeTask: (id: string, todolistId: string) => void;
+  // tasks?: Array<TaskType>;
+  // addTask: (title: string, todolistId: string) => void;
+  // removeTask: (id: string, todolistId: string) => void;
   changeFilter: (value: FilterValuesType, todolistId: string) => void;
-  changeTaskStatus: (taskId: string, isDone: boolean, todolistId: string) => void;
-  changeTaskTitle: (taskId: string, newValue: string, todolistId: string) => void;
+  // changeTaskStatus: (taskId: string, isDone: boolean, todolistId: string) => void;
+  // changeTaskTitle: (taskId: string, newValue: string, todolistId: string) => void;
   removeTodolist: (todolistId: string) => void;
   changeTodolistTitle: (id: string, newTitle: string) => void;
   filter: FilterValuesType;
@@ -36,8 +40,25 @@ export function TodoList(props: PropsType) {
   const onActiveClickHandler = () => props.changeFilter('active', props.id);
   const onCompletedClickHandler = () => props.changeFilter('completed', props.id);
 
+  const dispatch = useDispatch();
+  const tasks = useSelector<AppRootState, Array<TaskType>>(state => state.tasks[props.id]);
+
+  // function changeFilter(value: FilterValuesType, todolistId: string) {
+  //   const action = changeTodolistFilterAC(value, todolistId);
+  //   dispatch(action);
+  // }
+
+  function removeTask(id: string, todolistId: string) {
+    dispatch(removeTaskAC(id, todolistId));
+  }
+
+  function changeTaskTitle(taskId: string, newValue: string, todolistId: string) {
+    const action = changeTaskTitleAC(taskId, newValue, todolistId);
+    dispatch(action);
+  }
+
   const addTask = (title: string) => {
-    props.addTask(title, props.id);
+    dispatch(addTaskAC(title, props.id));
   }
 
   const removeTodolist = () => props.removeTodolist(props.id);
