@@ -58,7 +58,7 @@ export function TodoList(props: PropsType) {
   }
 
   const addTask = (title: string) => {
-    dispatch(addTaskAC(title, props.id));
+    dispatch(addTaskAC(title, todolist.id));
   }
 
   const removeTodolist = () => props.removeTodolist(props.id);
@@ -86,7 +86,9 @@ export function TodoList(props: PropsType) {
               props.removeTask(task.id, props.id)
             }
             const onChangeStatusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-              props.changeTaskStatus(task.id, e.currentTarget.checked, props.id);
+              let newIsDoneValue = e.currentTarget.checked;
+              dispatch(changeTaskStatusAC(task.id, newIsDoneValue, todolistId))
+              props.changeTaskStatus(task.id, newIsDoneValue, props.id);
             }
             const onChangeTitleHandler = (newValue: string) => {
               props.changeTaskTitle(task.id, newValue, props.id);
