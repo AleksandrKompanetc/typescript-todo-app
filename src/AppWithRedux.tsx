@@ -174,14 +174,14 @@ export default function AppWithRedux() {
           {
             todolists && todolists.map((tl) => {
 
-              let tasksForTodolists = tasks[tl.id];
+              // let tasksForTodolists = tasks[tl.id];
 
-              if (tl.filter === 'active') {
-                tasksForTodolists = tasksForTodolists.filter(t => t.isDone === false);
-              }
-              if (tl.filter === 'completed') {
-                tasksForTodolists = tasksForTodolists.filter(t => t.isDone === true);
-              }
+              // if (tl.filter === 'active') {
+              //   tasksForTodolists = tasksForTodolists.filter(t => t.isDone === false);
+              // }
+              // if (tl.filter === 'completed') {
+              //   tasksForTodolists = tasksForTodolists.filter(t => t.isDone === true);
+              // }
 
               return <Grid>
                 <Paper style={{ padding: '10px' }}>

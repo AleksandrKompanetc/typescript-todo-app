@@ -48,19 +48,6 @@ export function TodoList(props: PropsType) {
   //   dispatch(action);
   // }
 
-  function removeTask(id: string, todolistId: string) {
-    dispatch(removeTaskAC(id, todolistId));
-  }
-
-  function changeTaskTitle(taskId: string, newValue: string, todolistId: string) {
-    const action = changeTaskTitleAC(taskId, newValue, todolistId);
-    dispatch(action);
-  }
-
-  const addTask = (title: string) => {
-    dispatch(addTaskAC(title, todolist.id));
-  }
-
   const removeTodolist = () => props.removeTodolist(props.id);
 
   const changeTodolistTitle = (newTitle: string) => {
@@ -76,39 +63,45 @@ export function TodoList(props: PropsType) {
         </IconButton>
       </h3>
       <AddItemForm
-        addItem={addTask} 
+        addItem={(title) => dispatch(addTaskAC(title, props.id))} 
       />
       <div>
         {
-          props.tasks ? props.tasks.map(task => {
-
-            const onClickHandler = () => {
-              props.removeTask(task.id, props.id)
+          (() => {
+            let tasksForTodolists = tasks;
+            if (props.filter === 'active') {
+              tasksForTodolists = tasksForTodolists.filter(t => t.isDone === false);
             }
-            const onChangeStatusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-              let newIsDoneValue = e.currentTarget.checked;
-              dispatch(changeTaskStatusAC(task.id, newIsDoneValue, todolistId))
-              props.changeTaskStatus(task.id, newIsDoneValue, props.id);
+            if (props.filter === 'completed') {
+              tasksForTodolists = tasksForTodolists.filter(t => t.isDone === true);
             }
-            const onChangeTitleHandler = (newValue: string) => {
-              props.changeTaskTitle(task.id, newValue, props.id);
-            }
-
-            return <div key={task.id} className={task.isDone ? 'is-done' : ''}>
-              <CheckBox
-                checked={task.isDone}
-                onChange={onChangeStatusHandler}
-              />
-              <EditableSpan 
-                title={task.title} 
-                onChange={onChangeTitleHandler}
-                editMode={true} 
-              />
-              <IconButton onClick={onClickHandler}>
-                <DeleteIcon />
-              </IconButton>
-            </div>
-          }) : null
+            return tasksForTodolists.map(task => {
+              const onClickHandler = () => dispatch(removeTaskAC(task.id, props.id));
+              const onChangeStatusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+                let newIsDoneValue = e.currentTarget.checked;
+                dispatch(changeTaskStatusAC(task.id, newIsDoneValue, props.id));
+              };
+              const onChangeTitleHandler = (newValue: string) => {
+                dispatch(changeTaskTitleAC(task.id, newValue, props.id));
+              };
+              return (
+                <div key={task.id} className={task.isDone ? 'is-done' : ''}>
+                  <CheckBox
+                    checked={task.isDone}
+                    onChange={onChangeStatusHandler}
+                  />
+                  <EditableSpan 
+                    title={task.title} 
+                    onChange={onChangeTitleHandler}
+                    editMode={true} 
+                  />
+                  <IconButton onClick={onClickHandler}>
+                    <DeleteIcon />
+                  </IconButton>
+                </div>
+              );
+            });
+          })()
         }
       </div>
       <div>
