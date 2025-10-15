@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer, useState, useCallback } from 'react';
 import { TodoList } from './TodoList';
 import './App.css';
 import { TaskType } from './TodoList';
@@ -43,115 +43,45 @@ export default function AppWithRedux() {
   //   { id: v1(), title: 'Redux', isDone: true }
   // ]);
 
-  function changeFilter(value: FilterValuesType, todolistId: string) {
+  const addTask = useCallback((title: string, todolistId: string) {
+    const action = addTaskAC(title, todolistId);
+    dispatch(action);
+  }, []);
+
+  const removeTask = useCallback((id: string, todolistId: string) => {
+    const action = removeTaskAC(id, todolistId);
+    dispatch(action);
+  }, []);
+
+  const changeStatus = useCallback((taskId: string, isDone: boolean, todolistId: string) {
+    const action = changeTaskStatusAC(taskId, isDone, todolistId);
+    dispatch(action);
+  }, []);
+
+  const changeTaskTitle = useCallback((taskId: string, newValue: string, todolistId: string) {
+    const action = changeTaskTitleAC(taskId, newValue, todolistId);
+    dispatch(action);
+  }, []);
+
+  const changeFilter = useCallback((value: FilterValuesType, todolistId: string) {
     const action = changeTodolistFilterAC(value, todolistId);
     dispatch(action);
-    // let todolist = todolists.find(tl => tl.id === todolistId);
-    // if (todolist) {
-    //   todolist.filter = value;
-    //   setTodolists([...todolists]);
-    // }
-  }
+  }, []);
 
-  // function addTask(title: string, todolistId: string) {
-  //   const action = addTaskAC(title, todolistId);
-  //   dispatch(action);
-
-  //   let newTask = { id: v1(), title: title, isDone: false };
-  //   let tasks = tasksObj[todolistId];
-  //   let newTasks = [newTask, ...tasks];
-  //   tasksObj[todolistId] = newTasks;
-  //   setTasksObj({ ...tasksObj });
-  // }
-
-  // function removeTask(id: string, todolistId: string) {
-  //   const action = removeTaskAC(id, todolistId);
-  //   dispatch(action);
-
-  //   let tasks = tasksObj[todolistId];
-  //   let FilteredTasks = tasks.filter(t => t.id !== id);
-  //   tasksObj[todolistId] = FilteredTasks;
-  //   setTasksObj({ ...tasksObj });
-  // }
-
-  // function changeStatus(taskId: string, isDone: boolean, todolistId: string) {
-  //   const action = changeTaskStatusAC(taskId, isDone, todolistId);
-  //   dispatch(action);
-
-  //   let tasks = tasksObj[todolistId];
-  //   let task = tasks.find(t => t.id === taskId);
-  //   if (task) {
-  //     task.isDone = isDone;
-  //     setTasksObj({ ...tasksObj });
-  //   }
-  // }
-
-  // function changeTaskTitle(taskId: string, newValue: string, todolistId: string) {
-  //   const action = changeTaskTitleAC(taskId, newValue, todolistId);
-  //   dispatch(action);
-
-  //   let tasks = tasksObj[todolistId];
-  //   let task = tasks.find(t => t.id === taskId);
-  //   if (task) {
-  //     task.title = newValue;
-  //     setTasksObj({ ...tasksObj });
-  //   }
-  // }
-
-  // let [todolists, dispatchToTodolistsReducer] = useReducer(todolistsReducer, [
-  //   { id: todolistId1, title: 'What to learn', filter: 'all' },
-  //   { id: todolistId2, title: 'What to buy', filter: 'all' }
-  // ])
-
-  function removeTodolist(todolistId: string) {
+  const removeTodolist = useCallback((todolistId: string) {
     const action = removeTodolistAC(todolistId);
     dispatch(action);
-    // let filteredTodolist = todolists.filter(tl => tl.id !== todolistId);
-    // setTodolists(filteredTodolist);
-    // delete tasksObj[todolistId];
-    // setTasksObj({ ...tasksObj });
-  }
+  }, []);
 
-  function changeTodolistTitle(id: string, newTitle: string) {
+  const changeTodolistTitle = useCallback((id: string, newTitle: string) => {
     const action = changeTodolistTitleAC(id, newTitle);
     dispatch(action);
-    // const todolist = todolists.find(tl => tl.id === id);
-    // if (todolist) {
-    //   todolist.title = newTitle;
-    //   setTodolists([...todolists]);
-    // }
-  }
+  }, []);
 
-
-
-  // let [tasksObj, dispatchToTasksReducer] = useReducer(tasksReducer, {
-  //   [todolistId1]: [
-  //     { id: v1(), title: 'HTML&CSS', isDone: true },
-  //     { id: v1(), title: 'JS', isDone: true },
-  //     { id: v1(), title: 'ReactJS', isDone: false },
-  //     { id: v1(), title: 'Rest API', isDone: false },
-  //     { id: v1(), title: 'GraphQL', isDone: false }
-  //   ],
-  //   [todolistId2]: [
-  //     { id: v1(), title: 'Book', isDone: false },
-  //     { id: v1(), title: 'Milk', isDone: true },
-  //   ]
-  // })
-
-  function addTodolist(title: string) {
+  const addTodolist = useCallback((title: string) => {
     const action = addTodolistAC(title);
     dispatch(action);
-    // let todolist: TodolistType = {
-    //   id: v1(),
-    //   title: title,
-    //   filter: 'all'
-    // }
-    // setTodolists([todolist, ...todolists])
-    // setTasksObj({
-    //   ...tasksObj,
-    //   [todolist.id]: []
-    // })
-  }
+  }, []);
 
   return (
     <div className='App'>
@@ -174,8 +104,8 @@ export default function AppWithRedux() {
           {
             todolists && todolists.map((tl) => {
 
-              // let tasksForTodolists = tasks[tl.id];
-
+              let tasksForTodolists = tasks[tl.id];
+              
               // if (tl.filter === 'active') {
               //   tasksForTodolists = tasksForTodolists.filter(t => t.isDone === false);
               // }
@@ -189,12 +119,12 @@ export default function AppWithRedux() {
                     key={tl.id}
                     id={tl.id}
                     title={tl.title}
-                    // tasks={tasksForTodolists}
+                    tasks={tasksForTodolists}
                     changeFilter={changeFilter}
-                    // addTask={addTask}
-                    // removeTask={removeTask}
-                    // changeTaskStatus={changeStatus}
-                    // changeTaskTitle={changeTaskTitle}
+                    addTask={addTask}
+                    removeTask={removeTask}
+                    changeTaskStatus={changeStatus}
+                    changeTaskTitle={changeTaskTitle}
                     filter={tl.filter}
                     removeTodolist={removeTodolist}
                     changeTodolistTitle={changeTodolistTitle}

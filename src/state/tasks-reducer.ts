@@ -67,6 +67,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
       if (task) {
         task.isDone = action.isDone;
       }
+      stateCopy[action.todolistId] = [...tasks];
       return stateCopy;
     }
     case 'CHANGE-TASK-TITLE': {
@@ -76,6 +77,7 @@ export const tasksReducer = (state: TasksStateType = initialState, action: Actio
       if (task) {
         task.title = action.newTitle;
       }
+      stateCopy[action.todolistId] = [...tasks];
       return stateCopy;
     }
     case 'ADD-TODOLIST': {
