@@ -20,10 +20,10 @@ type PropsType = {
   title: string;
   tasks: Array<TaskType>;
   addTask: (title: string, todolistId: string) => void;
-  // removeTask: (id: string, todolistId: string) => void;
+  removeTask: (id: string, todolistId: string) => void;
   changeFilter: (value: FilterValuesType, todolistId: string) => void;
-  // changeTaskStatus: (taskId: string, isDone: boolean, todolistId: string) => void;
-  // changeTaskTitle: (taskId: string, newValue: string, todolistId: string) => void;
+  changeTaskStatus: (taskId: string, isDone: boolean, todolistId: string) => void;
+  changeTaskTitle: (taskId: string, newValue: string, todolistId: string) => void;
   removeTodolist: (todolistId: string) => void;
   changeTodolistTitle: (id: string, newTitle: string) => void;
   filter: FilterValuesType;
@@ -125,3 +125,37 @@ export const TodoList = React.memo((props: PropsType) => {
     </div >
   )
 })
+
+type TaskPropsType = {
+  changeTaskStatus: (taskId: string, isDone: boolean, todolistId: string) => void;
+  changeTaskTitle: (taskId: string, newValue: string, todolistId: string) => void;
+  removeTask: (id: string, todolistId: string) => void;
+}
+
+const Task = (props: TaskPropsType) => {
+  const onClickHandler = () => props.removeTask(task.id, props.id);
+  const onChangeStatusHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let newIsDoneValue = e.currentTarget.checked;
+    props.changeTaskStatus(task.id, newIsDoneValue, props.id);
+  };
+  const onChangeTitleHandler = (newValue: string) => {
+    props.changeTaskTitle(task.id, newValue, props.id);
+  };
+
+  return (
+    <div key={task.id} className={task.isDone ? 'is-done' : ''}>
+      <CheckBox
+        checked={task.isDone}
+        onChange={onChangeStatusHandler}
+      />
+      <EditableSpan
+        title={task.title}
+        onChange={onChangeTitleHandler}
+        editMode={true}
+      />
+      <IconButton onClick={onClickHandler}>
+        <DeleteIcon />
+      </IconButton>
+    </div>
+  );
+}
