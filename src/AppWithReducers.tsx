@@ -182,12 +182,12 @@ export default function AppWithReducers() {
                   <TodoList
                     id={tl.id}
                     title={tl.title}
-                    // tasks={tasksForTodolists}
+                      tasks={tasksForTodolists}
                     changeFilter={changeFilter}
-                    // addTask={addTask}
-                    // removeTask={removeTask}
-                    // changeTaskStatus={changeStatus}
-                    // changeTaskTitle={changeTaskTitle}
+                      addTask={addTask}
+                      removeTask={removeTask}
+                      changeTaskStatus={changeStatus}
+                      changeTaskTitle={changeTaskTitle}
                     filter={tl.filter}
                     removeTodolist={removeTodolist}
                     changeTodolistTitle={changeTodolistTitle}
