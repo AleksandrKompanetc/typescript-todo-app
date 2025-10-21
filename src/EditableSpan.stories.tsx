@@ -6,11 +6,11 @@ export default {
   component: EditableSpan
 }
 
-const changeCallback = action('Value changed');
+// const changeCallback = action('Value changed');
 
 export const EditableSpanBaseExample = () => {
-  return <EditableSpan 
-    value={'Start value'}
-    onChange={changeCallback}
-  />
+  // return <EditableSpan 
+  //   value={'Start value'}
+  //   onChange={changeCallback}
+  // />
 }
