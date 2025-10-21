@@ -9,9 +9,11 @@ export const GetTodolists = () => {
   const [state, setState] = useState<any>(null)
 
   useEffect(() => {
-    let promise = axios.get('')
-    promise.then((res) => {
-
+    axios.get('', settings)
+      .then((res) => {
+      setState(res.data)
     })
   }, [])
+
+  return <div>{JSON.stringify(state)}</div>
 }
