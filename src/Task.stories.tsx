@@ -5,25 +5,25 @@ export default {
   component: Task
 }
 
-const changeTaskStatusCallback = (taskId: string, isDone: boolean) => {
-
-}
+const changeTaskStatusCallback = action('Status changed');
+const changeTaskTitleCallback = action('Title changed');
+const removeTaskCallback = action('Task removed');
 
 export const TaskBaseExample = (props: any) => {
   return <>
     <Task 
       task={{ id: '1', isDone: true, title: 'CSS' }}
       changeTaskStatus={changeTaskStatusCallback}
-      changeTaskTitle={() => {}}
-      removeTask={() => {}}
+      changeTaskTitle={changeTaskTitleCallback}
+      removeTask={removeTaskCallback}
       todolistId={'todolistId1'}
     />
     <Task 
       task={{ id: '2', isDone: false, title: 'JS' }}
       changeTaskStatus={changeTaskStatusCallback}
-      changeTaskTitle={() => {}}
-      removeTask={() => {}}
-      todolistId={'todolistId1'}
+      changeTaskTitle={changeTaskTitleCallback}
+      removeTask={removeTaskCallback}
+      todolistId={'todolistId2'}
     />
   </>
 }
