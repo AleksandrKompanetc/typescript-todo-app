@@ -22,6 +22,18 @@ type CreateTodolistResponseType = {
   }
 }
 
+type DeleteTodolistResponseType = {
+  resultCode: number
+  messages: Array<string>
+  data: {}
+}
+
+type UpdateTodolistResponseType = {
+  resultCode: number
+  messages: Array<string>
+  data: {}
+}
+
 export const todolistsAPI = {
   getTodolists() {
     const promise = axios.get<Array<TodolistType>>('', settings)
@@ -32,11 +44,11 @@ export const todolistsAPI = {
     return promise
   },
   updateTodolist(id: string, title: string) {
-    const promise = axios.put('' + id, {title: title}, settings)
+    const promise = axios.put<UpdateTodolistResponseType>('' + id, {title: title}, settings)
     return promise
   },
   deleteTodolist(id: string) {
-    const promise = axios.delete('' + id, settings)
+    const promise = axios.delete<DeleteTodolistResponseType>('' + id, settings)
     return promise
   }
 }
