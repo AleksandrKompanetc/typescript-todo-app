@@ -56,5 +56,9 @@ export const todolistsAPI = {
   deleteTodolist(id: string) {
     const promise = axios.delete<ResponseType<{}>>('' + id, settings)
     return promise
+  },
+  getTasks(todolistId: number) {
+    const promise = axios.get('' + todolistId)
+    return promise
   }
 }
