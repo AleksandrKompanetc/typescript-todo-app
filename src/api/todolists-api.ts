@@ -40,6 +40,26 @@ type ResponseType<D> = {
   data: D
 }
 
+export type TaskType = {
+  description: string
+  title: string
+  completed: boolean
+  status: number
+  priority: number
+  startDate: string
+  deadline: string
+  id: string
+  todolistId: string
+  order: number
+  addedDate: string
+}
+
+type GetTasksResponse = {
+  error: string | null
+  totalCount: number
+  items: TaskType[]
+}
+
 export const todolistsAPI = {
   getTodolists() {
     const promise = axios.get<Array<TodolistType>>('', settings)
@@ -58,7 +78,7 @@ export const todolistsAPI = {
     return promise
   },
   getTasks(todolistId: number) {
-    const promise = axios.get('' + todolistId)
+    const promise = axios.get<GetTasksResponse>('' + todolistId)
     return promise
   }
 }
