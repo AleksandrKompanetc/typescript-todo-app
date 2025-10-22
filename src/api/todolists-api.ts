@@ -14,24 +14,30 @@ export type TodolistType = {
   order: 
 }
 
-type CreateTodolistResponseType = {
-  resultCode: number
-  messages: Array<string>
-  data: {
-    item: TodolistType
-  }
-}
+// type CreateTodolistResponseType = {
+//   resultCode: number
+//   messages: Array<string>
+//   data: {
+//     item: TodolistType
+//   }
+// }
 
-type DeleteTodolistResponseType = {
-  resultCode: number
-  messages: Array<string>
-  data: {}
-}
+// type DeleteTodolistResponseType = {
+//   resultCode: number
+//   messages: Array<string>
+//   data: {}
+// }
 
-type UpdateTodolistResponseType = {
+// type UpdateTodolistResponseType = {
+//   resultCode: number
+//   messages: Array<string>
+//   data: {}
+// }
+
+type ResponseType<D> = {
   resultCode: number
   messages: Array<string>
-  data: {}
+  data: D
 }
 
 export const todolistsAPI = {
@@ -40,15 +46,15 @@ export const todolistsAPI = {
     return promise
   },
   createTodolist(title: string) {
-    const promise = axios.post<CreateTodolistResponseType>('', {title: title}, settings)
+    const promise = axios.post<ResponseType<{item: TodolistType}>>('', {title: title}, settings)
     return promise
   },
   updateTodolist(id: string, title: string) {
-    const promise = axios.put<UpdateTodolistResponseType>('' + id, {title: title}, settings)
+    const promise = axios.put<ResponseType<{}>>('' + id, {title: title}, settings)
     return promise
   },
   deleteTodolist(id: string) {
-    const promise = axios.delete<DeleteTodolistResponseType>('' + id, settings)
+    const promise = axios.delete<ResponseType<{}>>('' + id, settings)
     return promise
   }
 }
