@@ -7,9 +7,16 @@ const settings = {
   }
 }
 
+export type TodolistType = {
+  id: string
+  title: string
+  addedData: string
+  order: 
+}
+
 export const todolistsAPI = {
   getTodolists() {
-    const promise = axios.get('', settings)
+    const promise = axios.get<Array<TodolistType>>('', settings)
     return promise
   },
   createTodolist(title: string) {

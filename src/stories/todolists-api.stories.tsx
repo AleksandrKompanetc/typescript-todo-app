@@ -16,7 +16,7 @@ export const GetTodolists = () => {
     todolistsAPI.getTodolists()
     // axios.get('', settings)
       .then((res) => {
-      setState(res.data)
+      setState(res.data[0])
     })
   }, [])
 
