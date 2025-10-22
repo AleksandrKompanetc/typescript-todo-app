@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
+import { todolistsAPI } from "../api/todolists-api"
 
 const settings = {
   withCredentials: true,
@@ -12,7 +13,8 @@ export const GetTodolists = () => {
   const [state, setState] = useState<any>(null)
 
   useEffect(() => {
-    axios.get('', settings)
+    todolistsAPI.getTodolists()
+    // axios.get('', settings)
       .then((res) => {
       setState(res.data)
     })
@@ -25,7 +27,8 @@ export const CreateTodolist = () => {
   const [state, setState] = useState<any>(null)
 
   useEffect(() => {
-    axios.post('', { title: 'New todolist' }, settings)
+    todolistsAPI.createTodolist('blabla Todolist')
+    // axios.post('', { title: 'New todolist' }, settings)
       .then((res) => {
         setState(res.data)
       })
@@ -36,9 +39,11 @@ export const CreateTodolist = () => {
 
 export const DeleteTodolist = () => {
   const [state, setState] = useState<any>(null)
+  const todolistId = "your-todolist-id-here";
 
   useEffect(() => {
-    axios.delete('', settings)
+    todolistsAPI.deleteTodolist(todolistId)
+    // axios.delete('', settings)
       .then((res) => {
         setState(res.data)
       })
@@ -49,9 +54,11 @@ export const DeleteTodolist = () => {
 
 export const UpdateTodolistTitle = () => {
   const [state, setState] = useState<any>(null)
+  const todolistId = "your-todolist-id"
 
   useEffect(() => {
-    axios.put('', {title: 'Yoyo'}, settings)
+    todolistsAPI.updateTodolist(todolistId, 'New todolist')
+    // axios.put('', {title: 'Yoyo'}, settings)
       .then((res) => {
         setState(res.data)
       })
