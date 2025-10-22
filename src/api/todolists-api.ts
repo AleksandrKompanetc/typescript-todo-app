@@ -14,13 +14,21 @@ export type TodolistType = {
   order: 
 }
 
+type CreateTodolistResponseType = {
+  resultCode: number
+  messages: Array<string>
+  data: {
+    item: TodolistType
+  }
+}
+
 export const todolistsAPI = {
   getTodolists() {
     const promise = axios.get<Array<TodolistType>>('', settings)
     return promise
   },
   createTodolist(title: string) {
-    const promise = axios.post('', {title: title}, settings)
+    const promise = axios.post<CreateTodolistResponseType>('', {title: title}, settings)
     return promise
   },
   updateTodolist(id: string, title: string) {
